@@ -1,0 +1,173 @@
+/* DESIGN DNA & DYNAMIC SCALING */
+:root {
+    --main-bg: #cecaca;
+    --box-bg: #ffffff;
+    --name-color: #232323;
+    --card-bg-text: rgba(52, 52, 52, 0.09);
+    --clr-accent: #9bdc28;
+    --font-main: 'Poppins', sans-serif;
+}
+
+.dark {
+    --main-bg: #131313;
+    --box-bg: #fcfcfcd5;
+    --name-color: #f8f8f8;
+    --card-bg-text: rgba(255, 255, 255, 0.05);
+}
+
+/* GLOBAL RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-main);
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: var(--main-bg);
+    transition: background 0.5s ease;
+}
+
+/* FLUID CONTAINER */
+.container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    width: 100%;
+    transform-style: preserve-3d;
+    padding: 20px;
+}
+
+/* CARDS */
+.box {
+    position: relative;
+    width: 300px;
+    height: 400px;
+    margin: 40px;
+    background: var(--box-bg);
+    border-radius: 20px;
+    transform-style: preserve-3d;
+    transition: 0.5s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* DATA-THEME LOGIC */
+.box[data-theme="green"] { --clr-accent: #9bdc28; }
+.box[data-theme="blue"]  { --clr-accent: #1DA3C3; }
+.box[data-theme="red"]   { --clr-accent: #eb0e2f; }
+
+/* BACKGROUND TYPOGRAPHY */
+.box::before {
+    content: 'REX';
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 6em;
+    font-weight: 900;
+    color: var(--card-bg-text);
+    font-style: italic;
+    opacity: 0;
+    transition: 0.5s;
+    pointer-events: none;
+}
+
+.box:hover::before { opacity: 1; }
+
+/* PRODUCT NAME */
+.box .name {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    text-align: center;
+    color: var(--name-color);
+    opacity: 0;
+    z-index: 10;
+    transform: translate3d(0, 0, 75px);
+    transition: 0.5s;
+}
+
+.box:hover .name {
+    top: 40px;
+    opacity: 1;
+}
+
+/* PRODUCT IMAGE */
+.product {
+    position: absolute;
+    max-width: 300px;
+    width: 130%;
+    z-index: 11;
+    transform: translate3d(-50%, -50%, 0) rotate(-15deg);
+    left: 50%;
+    top: 50%;
+    transition: 0.5s;
+    pointer-events: none;
+}
+
+.box:hover .product {
+    transform: translate3d(-50%, -50%, 100px) rotate(-15deg) scale(1.1);
+}
+
+/* CALL TO ACTION */
+.buy {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate3d(-50%, 0, 75px);
+    color: #fff;
+    background: var(--clr-accent);
+    padding: 10px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: 0.5s;
+    opacity: 0;
+    z-index: 12;
+}
+
+.box:hover .buy {
+    bottom: 30px;
+    opacity: 1;
+}
+
+/* DECORATIVE CIRCLE */
+.circle {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: var(--clr-accent);
+    border-radius: 50%;
+    transition: 0.5s;
+    z-index: 9;
+}
+
+.box:hover .circle {
+    transform: translate3d(0, 0, 35px) scale(1.5);
+}
+
+/* INTERFACE CONTROLS */
+.interface-controls {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+}
+
+.mode-switch {
+    background: none;
+    border: 2px solid var(--name-color);
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    color: var(--name-color);
+    display: flex;
+    transition: 0.3s;
+}

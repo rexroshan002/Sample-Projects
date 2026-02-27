@@ -1,0 +1,339 @@
+/* =========================================
+   Design System & 8px Grid Variables
+   ========================================= */
+:root {
+    /* 8px Spacing Grid */
+    --space-1: 8px;
+    --space-2: 16px;
+    --space-3: 24px;
+    --space-4: 32px;
+    --space-5: 40px;
+    --space-6: 48px;
+    --space-8: 64px;
+    --space-12: 96px;
+
+    /* Color Palette */
+    --primary-accent: #cd5c5c; /* IndianRed */
+    --primary-hover: #b94a4a;
+    --text-main: #1e293b;
+    --text-muted: #475569;
+    
+    /* Glassmorphism Specs */
+    --glass-bg: rgba(255, 255, 255, 0.45);
+    --glass-border: rgba(255, 255, 255, 0.6);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.08);
+    
+    /* Neumorphism Specs */
+    --neu-light: #ffffff;
+    --neu-dark: #d1d5db;
+
+    /* Typography */
+    --font-heading: 'ZCOOL KuaiLe', cursive;
+    --font-body: 'Outfit', sans-serif;
+
+    /* Animation Timing */
+    --transition-snappy: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --transition-smooth: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* =========================================
+   Reset & Base Styles
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    font-size: 1.125rem; /* 18px */
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+    background-color: #f8fafc;
+    position: relative;
+}
+
+/* Ambient Background to make Glassmorphism pop */
+.ambient-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background: radial-gradient(circle at 15% 50%, rgba(205, 92, 92, 0.08), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(56, 189, 248, 0.08), transparent 25%);
+    pointer-events: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* =========================================
+   Layout & Grid
+   ========================================= */
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: var(--space-12) var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+}
+
+/* =========================================
+   Header Component
+   ========================================= */
+.main-header {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: var(--space-4);
+    position: relative;
+}
+
+.header-glass-panel {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: var(--space-8) var(--space-6);
+    max-width: 800px;
+    box-shadow: var(--glass-shadow);
+}
+
+.main-header h1 {
+    font-family: var(--font-heading);
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    line-height: 1.1;
+    margin-bottom: var(--space-3);
+    color: var(--text-main);
+}
+
+.main-header h1 span {
+    background: linear-gradient(135deg, var(--primary-accent), #ff8a8a);
+    -webkit-background-clip: text;
+    background-clip: text; /* Standard property for forward compatibility */
+    -webkit-text-fill-color: transparent;
+}
+
+.social-links a:hover { color: var(--c-white) !important; transform: scale(1.1); }
+.main-header p {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    font-weight: 300;
+    margin-bottom: var(--space-6);
+}
+
+/* =========================================
+   Glassmorphism Artwork Cards
+   ========================================= */
+.glass-effect {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 32px;
+    box-shadow: var(--glass-shadow);
+}
+
+.card {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: var(--space-6);
+    padding: var(--space-3);
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Micro-interaction: Card Hover Elevation */
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.6);
+}
+
+/* Alternating Layout Pattern */
+.card:nth-child(even) {
+    grid-template-columns: 1fr 1.2fr;
+}
+
+.card:nth-child(even) .card-image-wrapper {
+    order: 2;
+}
+
+/* Image Handling */
+.card-image-wrapper {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    height: 500px;
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform;
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.2) 0%, transparent 50%);
+    opacity: 0;
+    transition: var(--transition-snappy);
+}
+
+.card:hover img {
+    transform: scale(1.06);
+}
+
+.card:hover .image-overlay {
+    opacity: 1;
+}
+
+/* Card Content Details */
+.card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: var(--space-4);
+}
+
+.badge {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 700;
+    color: var(--primary-accent);
+    background: rgba(205, 92, 92, 0.1);
+    padding: var(--space-1) var(--space-2);
+    border-radius: 50px;
+    margin-bottom: var(--space-2);
+}
+
+.card h3 {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    margin-bottom: var(--space-2);
+    color: var(--text-main);
+}
+
+.card p {
+    color: var(--text-muted);
+    font-weight: 300;
+    margin-bottom: var(--space-5);
+}
+
+/* =========================================
+   Neumorphic Micro-interactions (Button)
+   ========================================= */
+.neumorphic-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-2) var(--space-5);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-main);
+    background: #f1f5f9;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    /* Soft Neumorphic Box Shadow */
+    box-shadow: 
+        6px 6px 12px rgba(163, 177, 198, 0.4), 
+        -6px -6px 12px rgba(255, 255, 255, 0.8);
+    transition: var(--transition-snappy);
+    cursor: pointer;
+}
+
+.neumorphic-btn:hover {
+    color: var(--primary-accent);
+    transform: translateY(-2px);
+    box-shadow: 
+        8px 8px 16px rgba(163, 177, 198, 0.5), 
+        -8px -8px 16px rgba(255, 255, 255, 0.9);
+}
+
+.neumorphic-btn:active {
+    transform: translateY(1px);
+    /* Inset shadow for tactile press effect */
+    box-shadow: 
+        inset 4px 4px 8px rgba(163, 177, 198, 0.4), 
+        inset -4px -4px 8px rgba(255, 255, 255, 0.8);
+}
+.neumorphic-btn:focus-visible {
+    outline: 2px solid var(--primary-accent);
+    outline-offset: 4px;
+}
+
+/* =========================================
+   Footer Component
+   ========================================= */
+.main-footer {
+    margin-top: var(--space-8);
+    padding: var(--space-6) var(--space-4);
+    text-align: center;
+    border-radius: 32px 32px 0 0;
+    border-bottom: none;
+}
+
+.main-footer h2 {
+    font-family: var(--font-heading);
+    color: var(--primary-accent);
+    margin-bottom: var(--space-1);
+}
+
+/* =========================================
+   Responsive Design (Sub-992px)
+   ========================================= */
+@media (max-width: 992px) {
+    .card, .card:nth-child(even) {
+        grid-template-columns: 1fr;
+    }
+    
+    .card:nth-child(even) .card-image-wrapper {
+        order: 0; /* Resets image order for mobile stack */
+    }
+    
+    .card-image-wrapper {
+        height: 350px;
+    }
+    
+    .card-content {
+        padding: var(--space-3) var(--space-1);
+        align-items: center;
+        text-align: center;
+    }
+}
+/* =========================================
+   Custom Scrollbar
+   ========================================= */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f8fafc; /* Matches your body background */
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(205, 92, 92, 0.4); /* Subtle IndianRed */
+    border-radius: 10px;
+    border: 2px solid #f8fafc; /* Creates padding effect */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(205, 92, 92, 0.7);
+}

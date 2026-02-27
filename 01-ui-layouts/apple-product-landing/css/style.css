@@ -1,0 +1,146 @@
+/* ─── RESET & BASE (V2 Aesthetic) ─── */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body { font-family: "Montserrat", sans-serif; color: white; line-height: 1; overflow-x: hidden; background: #010101; }
+    ol, ul { list-style: none; }
+    button { border: none; background: none; outline: none; color: white; cursor: pointer; transition: 0.3s; }
+    div { display: flex; }
+    
+    /* ─── BANNER & ANIMATIONS (V2 Visulas) ─── */
+    .banner {
+      position: relative; height: 100vh; width: 100vw;
+      background: linear-gradient(to left, #8942a8, #ba382f);
+      overflow: hidden; flex-direction: column;
+    }
+    .box-area { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: 0; }
+    .box-area li {
+      position: absolute; display: block; list-style: none; width: 25px; height: 25px;
+      background: rgba(255, 255, 255, 0.2); overflow: hidden;
+      animation: animate 20s linear infinite; bottom: -120px;
+    }
+    .box-area li:nth-child(1) { left: 86%; width: 80px; height: 80px; animation-delay: 0s; }
+    .box-area li:nth-child(2) { left: 12%; width: 30px; height: 30px; animation-delay: 1.5s; animation-duration: 10s; }
+    .box-area li:nth-child(3) { left: 70%; width: 100px; height: 100px; animation-delay: 5.5s; }
+    .box-area li:nth-child(4) { left: 42%; width: 150px; height: 150px; animation-delay: 0s; animation-duration: 15s; }
+    .box-area li:nth-child(5) { left: 65%; width: 40px; height: 40px; animation-delay: 0s; }
+    .box-area li:nth-child(6) { left: 15%; width: 110px; height: 110px; animation-delay: 3.5s; animation-duration: 15s; }
+    @keyframes animate {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* ─── NAVIGATION (V2 Style + V1 Badge Logic) ─── */
+    .nav {
+      position: absolute; top: 0; width: 100%; height: 4rem;
+      justify-content: space-between; align-items: center; padding: 0 2rem; z-index: 10;
+    }
+    .brand { font-size: 1.5rem; font-weight: 700; letter-spacing: 2px; z-index: 10; align-items: center; }
+    .cart-trigger { position: relative; font-size: 2rem; }
+    .total-qty {
+      position: absolute; top: -5px; right: -10px; height: 1.2rem; min-width: 1.2rem;
+      background: white; color: black; border-radius: 50%;
+      text-align: center; line-height: 1.2rem; font-weight: 600; font-size: 0.8rem; padding: 0 4px;
+    }
+
+    /* ─── PRODUCT GRID & CARDS (V2 Design) ─── */
+    .main-cart {
+      position: absolute; justify-content: center; gap: 2rem; flex-wrap: wrap;
+      width: 100%; height: calc(100% - 4rem); top: 4rem; padding: 2rem; z-index: 5; overflow-y: auto;
+    }
+    .card {
+      position: relative; flex-shrink: 0; height: 300px; width: 220px;
+      background-color: #010101; border-radius: 20px; overflow: hidden;
+      box-shadow: 0 7px 15px rgba(0,0,0,0.5); transition: 0.5s; flex-direction: column;
+    }
+    .card:hover { height: 450px; width: 260px; box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7); z-index: 10; }
+    
+    .top-bar { transform: translateY(0.5rem); width: 100%; justify-content: space-between; padding: 0 1rem; }
+    .top-bar .fa-apple { font-size: 1.5rem; }
+    .top-bar .stocks { font-size: 0.75rem; color: lightgreen; font-weight: 600; padding: 4px 8px; border: 1px solid lightgreen; border-radius: 20px;}
+    .top-bar .stocks.low { color: orange; border-color: orange; }
+    .top-bar .stocks.out { color: #e05c6a; border-color: #e05c6a; }
+
+    .img-container { position: absolute; height: 185px; width: 185px; margin: 0 auto; left: 0; right: 0; transform: translateY(35px); }
+    .img-container img { width: 100%; align-self: center; transition: 0.3s; }
+    .card:hover .img-container img { transform: scale(1.1); }
+    
+    .out-of-stock-cover {
+      position: absolute; inset: 0; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(2px);
+      justify-content: center; align-items: center; display: none; border-radius: 10px;
+    }
+    .out-of-stock-cover span { font-weight: 900; color: #ffc8c8; font-size: 1.2rem; transform: rotate(-15deg); border: 2px solid #ffc8c8; padding: 5px; }
+
+    .details {
+      position: absolute; height: 220px; width: 100%; background-color: #2e2f33;
+      border-radius: 20px; flex-direction: column; justify-content: space-between;
+      padding: 20px; bottom: -165px; transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .card:hover .details { bottom: 0; }
+    
+    .name-fav { justify-content: space-between; align-items: center; width: 100%; }
+    .name-fav strong { font-weight: 600; font-size: 1.1rem; }
+    .heart { font-size: 1.2rem; transition: transform 0.2s; }
+    .heart:hover { transform: scale(1.2); }
+    .heart.active { color: #e05c6a; }
+
+    .wrapper { flex-direction: column; opacity: 0; transition: opacity 0.3s; transition-delay: 0.1s; }
+    .card:hover .wrapper { opacity: 1; }
+    .wrapper h5 { font-size: 0.85rem; color: #c9a96e; margin-bottom: 5px; }
+    .wrapper p { font-size: 0.8rem; line-height: 1.4; color: #ccc; }
+
+    .purchase { width: 100%; justify-content: space-between; align-items: center; }
+    .purchase p { font-weight: 600; font-size: 1.1rem; }
+    
+    .add-btn { border-radius: 20px; border: 1px solid white; padding: 6px 12px; font-weight: 600; }
+    .add-btn:hover { background: white; color: black; }
+    
+    /* V1 Quantity Controls */
+    .qty-change { align-items: center; gap: 8px; background: rgba(255,255,255,0.1); border-radius: 20px; padding: 2px; }
+    .btn-qty { width: 26px; height: 26px; border-radius: 50%; background: white; color: black; display: flex; justify-content: center; align-items: center;}
+    .qty-val { font-weight: 700; width: 20px; text-align: center; }
+
+    /* ─── SIDE NAV CART (V2 + V1 logic) ─── */
+    .cover { position: absolute; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(5px); display: none; z-index: 200; }
+    .side-nav {
+      position: absolute; background: #010101; height: 100%; width: 400px; max-width: 100vw;
+      flex-direction: column; top: 0; right: -100%; z-index: 210; transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+    }
+    .side-nav.open { right: 0; }
+    .side-nav-header { padding: 20px; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; }
+    .side-nav-header h2 { font-size: 1.8rem; font-weight: 600; }
+    .side-nav-header .fa-times { font-size: 1.5rem; }
+    
+    .cart-items { flex: 1; flex-direction: column; overflow-y: auto; padding: 20px; gap: 15px; }
+    .empty-cart { margin: auto; font-size: 1.2rem; font-weight: 600; text-align: center; color: rgba(255, 255, 255, 0.5); }
+    
+    .cart-item { height: auto; width: 100%; align-items: center; justify-content: space-between; padding-bottom: 15px; border-bottom: 1px solid #333; }
+    .cart-item img { width: 50px; height: 50px; object-fit: contain; }
+    .cart-item-info { flex-direction: column; flex: 1; padding: 0 15px; }
+    .cart-item-info strong { font-size: 0.9rem; margin-bottom: 5px; }
+    .cart-item-info span { color: #c9a96e; font-size: 0.85rem; font-weight: 600; }
+    .cart-item .fa-trash { color: #e05c6a; font-size: 1.1rem; }
+
+    .final { flex-direction: column; padding: 20px; border-top: 1px solid #333; background: #0a0a0f; }
+    .final-total { justify-content: space-between; font-size: 1.2rem; font-weight: 600; margin-bottom: 15px; }
+    .final .action { justify-content: space-between; gap: 10px; }
+    .final .btn { flex: 1; font-size: 1rem; padding: 12px 0; border: 1px solid white; border-radius: 10px; font-weight: 600; text-align: center;}
+    .final .btn.buy { background: white; color: black; }
+    .final .btn.buy:hover { background: #c9a96e; border-color: #c9a96e; }
+    .final .btn.clear:hover { background: #e05c6a; border-color: #e05c6a; }
+
+    /* ─── TOASTS & MODALS (V1 Polish) ─── */
+    .toast-wrap { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 500; display: flex; flex-direction: column; gap: 10px;}
+    .toast { background: rgba(15,15,22,0.95); border: 1px solid #333; border-radius: 10px; padding: 12px 20px; display: flex; align-items: center; gap: 15px; box-shadow: 0 8px 32px rgba(0,0,0,0.6); animation: toastIn 0.3s forwards; }
+    @keyframes toastIn { from{opacity:0; transform:translateY(-20px)} to{opacity:1; transform:translateY(0)} }
+    
+    .modal-wrap { position: fixed; inset: 0; z-index: 400; display: none; align-items: center; justify-content: center; padding: 20px; }
+    .modal-wrap.open { display: flex; }
+    .invoice { width: 100%; max-width: 400px; background: rgba(10,10,15,0.95); backdrop-filter: blur(20px); border: 1px solid #333; border-radius: 20px; padding: 30px; flex-direction: column; gap: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.8); }
+    .invoice-title { font-size: 1.5rem; font-weight: 600; border-bottom: 1px solid #333; padding-bottom: 10px; }
+    .invoice-row { justify-content: space-between; padding: 5px 0; font-size: 0.9rem; color: #ccc; }
+    .invoice-total { justify-content: space-between; font-size: 1.4rem; font-weight: 700; color: #c9a96e; padding-top: 10px; border-top: 1px dashed #555; }
+    .invoice-actions { gap: 10px; margin-top: 10px; }
+    .invoice-actions button { flex: 1; padding: 12px; border-radius: 10px; font-weight: 600; }
+    .btn-confirm { background: #5ce0a8; color: black; }
+    .btn-cancel { border: 1px solid #555; }

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Contacts Protocol</title>
+    <link rel="stylesheet" href="./css/style.css" class="src">
+</head>
+<body>
+
+<div class="app-container">
+    <nav class="navbar">
+        <div class="logo"><strong>Contacts</strong></div>
+        <div class="search-container">
+            <input type="text" id="filterInput" placeholder="Search contacts" aria-label="Search">
+        </div>
+    </nav>
+
+    <main class="contact-list-wrapper">
+        <table class="contact-table" id="names">
+            <tbody class="contact-group" data-letter="A">
+                <tr><td colspan="2" class="section-header">A</td></tr>
+                <tr class="contact-row"><td class="contact-cell name-cell"><div class="avatar">A</div>Abe</td></tr>
+                <tr class="contact-row"><td class="contact-cell name-cell"><div class="avatar">A</div>Alex</td></tr>
+                <tr class="contact-row"><td class="contact-cell name-cell"><div class="avatar">A</div>Ananya</td></tr>
+                <tr class="contact-row"><td class="contact-cell name-cell"><div class="avatar">A</div>Aishwarya</td></tr>
+            </tbody>
+
+            <tbody class="contact-group" data-letter="B">
+                <tr><td colspan="2" class="section-header">B</td></tr>
+                <tr class="contact-row"><td class="contact-cell name-cell"><div class="avatar">B</div>Betty</td></tr>
+                <tr class="contact-row"><td class="contact-cell name-cell"><div class="avatar">B</div>Bhumi</td></tr>
+                <tr class="contact-row"><td class="contact-cell name-cell"><div class="avatar">B</div>Bhuvaneshwari</td></tr>
+            </tbody>
+
+            <tbody class="contact-group" data-letter="C">
+                <tr><td colspan="2" class="section-header">C</td></tr>
+                <tr class="contact-row"><td class="contact-cell name-cell"><div class="avatar">C</div>Chetana</td></tr>
+                <tr class="contact-row"><td class="contact-cell name-cell"><div class="avatar">C</div>Chirag</td></tr>
+                <tr class="contact-row"><td class="contact-cell name-cell"><div class="avatar">C</div>Caroline</td></tr>
+                <tr class="contact-row"><td class="contact-cell name-cell"><div class="avatar">C</div>Camel</td></tr>
+            </tbody>
+        </table>
+        
+        <div id="emptyState" class="empty-state hidden">
+            <p>No results found for your search.</p>
+        </div>
+    </main>
+</div>
+
+<script src="./js/main.js">
+</script>
+
+</body>
+</html>

@@ -1,0 +1,191 @@
+/* Core Variables & 8px Grid System */
+:root {
+    --space-1: 0.5rem;   /* 8px */
+    --space-2: 1rem;     /* 16px */
+    --space-3: 1.5rem;   /* 24px */
+    --space-4: 2rem;     /* 32px */
+    --space-5: 2.5rem;   /* 40px */
+    
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-highlight: rgba(255, 255, 255, 0.2);
+    --accent-color: #60a5fa;
+    --danger-color: #ef4444;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: #f8fafc;
+}
+
+/* Animated Mesh Gradient Background */
+.mesh-background {
+    background-color: #0f172a;
+    background-image: 
+        radial-gradient(at 0% 0%, rgba(30, 58, 138, 0.5) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(88, 28, 135, 0.5) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(15, 118, 110, 0.5) 0px, transparent 50%),
+        radial-gradient(at 0% 100%, rgba(126, 34, 206, 0.5) 0px, transparent 50%);
+    background-attachment: fixed;
+}
+
+/* Glassmorphism Panel */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 1.5rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    max-width: 800px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Typography Enhancements */
+.text-accent { color: var(--accent-color); }
+.tracking-wide { letter-spacing: 0.05em; }
+
+/* Premium Input Fields */
+.glass-input {
+    background: rgba(0, 0, 0, 0.2) !important;
+    border: 1px solid var(--glass-border) !important;
+    color: #fff !important;
+    padding: var(--space-2) var(--space-3);
+    border-radius: 0.75rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-input:focus {
+    background: rgba(0, 0, 0, 0.3) !important;
+    border-color: var(--accent-color) !important;
+    box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.1) !important;
+}
+
+/* Button Micro-interactions */
+.glass-btn-primary {
+    background: var(--accent-color);
+    color: #0f172a;
+    padding: var(--space-2) var(--space-3);
+    border-radius: 0.75rem;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.glass-btn-primary:hover {
+    background: #93c5fd;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(96, 165, 250, 0.3);
+}
+
+.glass-btn-danger {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--danger-color);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    border-radius: 0.5rem;
+    padding: var(--space-1) var(--space-2);
+    transition: all 0.2s ease;
+}
+
+.glass-btn-danger:hover {
+    background: var(--danger-color);
+    color: #fff;
+    transform: scale(1.05);
+}
+
+/* Table Styling */
+.glass-table {
+    --bs-table-bg: transparent;
+    --bs-table-color: #fff;
+    border-collapse: separate;
+    border-spacing: 0 var(--space-1);
+}
+
+.glass-table th {
+    border-bottom: 1px solid var(--glass-border);
+    padding-bottom: var(--space-2);
+}
+
+.glass-table td {
+    background: rgba(255, 255, 255, 0.02);
+    border-top: 1px solid var(--glass-border) !important;
+    border-bottom: 1px solid var(--glass-border) !important;
+    padding: var(--space-2) var(--space-3);
+}
+
+.glass-table tr td:first-child {
+    border-left: 1px solid var(--glass-border) !important;
+    border-top-left-radius: 0.75rem;
+    border-bottom-left-radius: 0.75rem;
+}
+
+.glass-table tr td:last-child {
+    border-right: 1px solid var(--glass-border) !important;
+    border-top-right-radius: 0.75rem;
+    border-bottom-right-radius: 0.75rem;
+}
+
+.table-row-animate {
+    animation: slideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Floating Alerts */
+.glass-alert {
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(12px);
+    border-left: 4px solid var(--accent-color);
+    color: #fff;
+    padding: var(--space-2) var(--space-3);
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+    animation: slideInRight 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.glass-alert.alert-success { border-color: #10b981; }
+.glass-alert.alert-danger { border-color: var(--danger-color); }
+
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+/* --- SKELETON LOADING EFFECTS --- */
+.skeleton-row td {
+    border: none !important;
+    background: transparent !important;
+}
+
+.skeleton-shimmer {
+    height: 1.5rem;
+    width: 90%;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.03) 25%,
+        rgba(255, 255, 255, 0.08) 50%,
+        rgba(255, 255, 255, 0.03) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+    border-radius: 0.5rem;
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+/* --- ANIMATION HELPERS --- */
+.fade-out {
+    opacity: 0 !important;
+    transform: translateX(20px) !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Fixed Height for Table to prevent layout shift during loading */
+#book-list {
+    min-height: 150px;
+}
