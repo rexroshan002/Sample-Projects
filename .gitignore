@@ -1,0 +1,16 @@
+# Node modules
+node_modules/
+
+# Build artifacts
+/dist/
+/build/
+
+# Logs
+npm-debug.log*
+yarn-error.log*
+
+# Other common development files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
